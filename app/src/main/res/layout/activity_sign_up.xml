@@ -42,13 +42,25 @@
         android:padding="10dp"
         />
 
+    <EditText
+        android:id="@+id/etNewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:layout_below="@+id/etNewPassword"
+        android:hint="Enter your email"
+        android:textSize="25dp"
+        android:padding="10dp"
+        />
+
     <Button
         android:id="@+id/createAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         android:text="Create Account"
-        android:layout_below="@id/etNewPassword"
+        android:layout_below="@id/etNewEmail"
         android:layout_centerInParent="true"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"

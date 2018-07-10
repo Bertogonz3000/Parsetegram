@@ -33,6 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         //init context
         context = this.getBaseContext();
 
+        //if the current user exists, run with them
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null){
+            final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            //put finish here so user can't logout just by hitting the back button
+            finish();
+            loggingIn = false;
+        }
+
         //initializing widets
         etPassword = (EditText) findViewById(R.id.etPassword);
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -85,5 +95,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(context, "Already Logging in, please wait", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

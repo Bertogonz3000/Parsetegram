@@ -28,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     private EditText etDescription;
     private Button createButton, refreshButton;
 
+    //TODO - allow users to log out
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
