@@ -23,7 +23,7 @@ import android.widget.EditText;
 public class HomeActivity extends AppCompatActivity {
 
     //Image used for testing feed
-    private static final String testImagePath = "/storage/emulated/0/DCIM/Cameregrcjbcvrnlrnhhgcniliuvvutdblclia/IMG_20180710_131557.jpg";
+    private static final String testImagePath = "/storage/emulated/0/DCIM/Camera/IMG_20180710_131557.jpg";
 
     private EditText etDescription;
     private Button createButton, refreshButton;
