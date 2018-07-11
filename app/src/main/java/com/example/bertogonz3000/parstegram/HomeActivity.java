@@ -38,12 +38,14 @@ public class HomeActivity extends AppCompatActivity {
     private static final String testImagePath = "/storage/emulated/0/DCIM/Camera/IMG_20180710_131557.jpg";
 
     private EditText etDescription;
-    private Button createButton, refreshButton;
+    private Button createButton, refreshButton, feedButton;
 
     private ImageView photoView;
 
     //global var for image file to be posted
     private File file;
+
+
 
     //camera vars
 //    public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
@@ -64,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         createButton = (Button) findViewById(R.id.createButton);
         refreshButton = (Button) findViewById(R.id.refreshButton);
         photoView = (ImageView) findViewById(R.id.photoView);
+        feedButton = (Button) findViewById(R.id.feedButton);
 
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -170,6 +173,12 @@ public class HomeActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
             photoView.setImageBitmap(bitmap);
         }
+    }
+
+    //onClick for feedButton, moves to FeedActivity
+    public void viewFeed(View view){
+        Intent i = new Intent(this, FeedActivity.class);
+        startActivity(i);
     }
 
     //Launch the camera

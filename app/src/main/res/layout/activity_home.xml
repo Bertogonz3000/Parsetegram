@@ -45,6 +45,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Refresh"
-        android:layout_alignParentBottom="true"/>
+        android:layout_above="@id/feedButton"/>
+
+    <Button
+        android:id="@+id/feedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Feed"
+        android:layout_alignParentBottom="true"
+        android:onClick="viewFeed"/>
 
 </RelativeLayout>

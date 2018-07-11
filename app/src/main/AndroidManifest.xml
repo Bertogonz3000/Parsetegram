@@ -4,8 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -27,17 +26,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+
         <provider
-            android:authorities="com.example.bertogonz3000.parstegram"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.bertogonz3000.parstegram"
             android:exported="false"
             android:grantUriPermissions="true">
-             <meta-data
+            <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                 android:resource="@xml/paths"
-                 />
-                 </provider>
+                android:resource="@xml/paths" />
+        </provider>
+
+        <activity android:name=".FeedActivity"></activity>
     </application>
 
 </manifest>
