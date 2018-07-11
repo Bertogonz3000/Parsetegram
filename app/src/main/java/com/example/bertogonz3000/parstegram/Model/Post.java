@@ -61,6 +61,7 @@ public class Post extends ParseObject{
         public Query getTop() {
             //limit posts to grab only first 20 - this is the builder pattern?
             setLimit(20);
+            orderByDescending("createdAt");
             return this;
         }
 
@@ -68,6 +69,7 @@ public class Post extends ParseObject{
             include("user");
             return this;
         }
+
 
     }
 

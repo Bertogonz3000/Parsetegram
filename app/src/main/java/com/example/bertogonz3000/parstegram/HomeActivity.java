@@ -82,7 +82,6 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
 
-                createPost(description, parseFile, user);
             }
         });
 
