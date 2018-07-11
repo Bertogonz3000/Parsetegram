@@ -9,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.bertogonz3000.parstegram.Model.Post;
+import com.parse.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
@@ -49,13 +54,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         //The post to be referenced by this method
         Post post = posts.get(position);
 
+        //set the description from data
+        holder.postDescription.setText(post.getDescription());
 
+        //set the username from data
+        try {
+            holder.postUsername.setText(post.getUser().fetchIfNeeded().getUsername());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        //set the image from data using Glide
+        Glide.with(context)
+                .load(post.getImage().getUrl())
+                .into(holder.postImage);
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return posts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

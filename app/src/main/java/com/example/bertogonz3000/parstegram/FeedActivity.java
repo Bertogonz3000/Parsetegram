@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ public class FeedActivity extends AppCompatActivity {
 
     private Button createPostButton, testButton;
     private ArrayList<Post> posts;
+    private PostAdapter adapter;
 
 
     @Override
@@ -28,12 +31,21 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        createPostButton = (Button) findViewById(R.id.createPostButton);
-        testButton = (Button) findViewById(R.id.testButton);
+        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rvPosts);
 
         posts = new ArrayList<>();
 
+        adapter = new PostAdapter(posts);
+        rvPosts.setAdapter(adapter);
+        rvPosts.setLayoutManager(new LinearLayoutManager(this));
+
         getPosts();
+
+
+
+        createPostButton = (Button) findViewById(R.id.createPostButton);
+
+
 
     }
 
@@ -50,6 +62,7 @@ public class FeedActivity extends AppCompatActivity {
             public void done(List<Post> objects, ParseException e) {
                 if (e == null){
                     posts.addAll(objects);
+                    adapter.notifyDataSetChanged();
                 } else {
                     Log.e("FeedActivity", "Failed to get posts");
                 }
