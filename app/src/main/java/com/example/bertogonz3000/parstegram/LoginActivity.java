@@ -35,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
 
         //if the current user exists, run with them
         ParseUser currentUser = ParseUser.getCurrentUser();
+        Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
         if (currentUser != null){
+            Toast.makeText(this, "test2", Toast.LENGTH_SHORT).show();
             final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             //put finish here so user can't logout just by hitting the back button
