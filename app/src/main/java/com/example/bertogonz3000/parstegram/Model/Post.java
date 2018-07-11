@@ -1,10 +1,19 @@
 package com.example.bertogonz3000.parstegram.Model;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ParseClassName("Post")
 public class Post extends ParseObject{
@@ -61,5 +70,6 @@ public class Post extends ParseObject{
         }
 
     }
+
 
 }
