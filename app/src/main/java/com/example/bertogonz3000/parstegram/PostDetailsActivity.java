@@ -2,8 +2,14 @@ package com.example.bertogonz3000.parstegram;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.bertogonz3000.parstegram.Model.Post;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
@@ -23,6 +29,28 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
     public void populatePost(){
+        final Post.Query query = new Post.Query();
+        query.getInBackground(getIntent().getStringExtra("post"), new GetCallback<Post>() {
+            @Override
+            public void done(Post object, ParseException e) {
+                if (e == null) {
+                    postDetailsDescription.setText(object.getDescription());
+
+                    //set the image from data using Glide
+                    Glide.with(getApplicationContext())
+                            .load(object.getImage().getUrl())
+                            .into(postDetailsImage);
+
+                    try {
+                        postDetailsUsername.setText(object.getUser().fetchIfNeeded().getUsername());
+                    } catch (Exception error) {
+                    error.printStackTrace();
+                    }
+                } else {
+                    Log.e("PostDetailsActivity", "Failed to get posts");
+                }
+            }
+        });
 
     }
 
