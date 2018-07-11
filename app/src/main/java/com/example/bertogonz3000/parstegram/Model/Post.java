@@ -12,6 +12,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,6 @@ public class Post extends ParseObject{
 
         put(KEY_USER, user);
     }
-
-
 
 
     //Query of a Post

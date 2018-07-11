@@ -1,6 +1,7 @@
 package com.example.bertogonz3000.parstegram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
+
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
@@ -76,7 +78,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         return posts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView postImage;
         private TextView postUsername, postDescription;
@@ -88,7 +90,27 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             postUsername = (TextView) itemView.findViewById(R.id.postUsername);
             postDescription = (TextView) itemView.findViewById(R.id.postDescription);
 
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view){
+            int position = getAdapterPosition();
+
+            if (position != RecyclerView.NO_POSITION){
+
+                Post post = posts.get(position);
+
+                //TODO - Create postdeatilsactivity
+                Intent intent = new Intent(context, PostDetailsActivity.class);
+
+                intent.putExtra("post", post.getObjectId());
+
+                context.startActivity(intent);
+
+            }
+        }
+
     }
 
 
