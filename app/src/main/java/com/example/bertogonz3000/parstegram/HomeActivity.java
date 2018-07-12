@@ -140,31 +140,31 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void dispatchTakePictureIntent(View view){
-
-        File directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        try{
-            file = File.createTempFile("photo", ".jpg", directory);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-        //Get uri for file
-        Uri uri =
-                FileProvider
-                        .getUriForFile(this,
-                AUTHORITY,
-                file);
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null){
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
+//    public void dispatchTakePictureIntent(View view){
+//
+//        File directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//
+//        try{
+//            file = File.createTempFile("photo", ".jpg", directory);
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
+//
+//        //Get uri for file
+//        Uri uri =
+//                FileProvider
+//                        .getUriForFile(this,
+//                AUTHORITY,
+//                file);
+//
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null){
+//                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//        }
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){

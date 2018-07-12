@@ -1,18 +1,56 @@
 package com.example.bertogonz3000.parstegram.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.bertogonz3000.parstegram.FeedActivity;
+import com.example.bertogonz3000.parstegram.Model.Post;
 import com.example.bertogonz3000.parstegram.R;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class CaptureFragment extends Fragment {
+
+    //Path you need for Uri
+    private static final String AUTHORITY = "com.example.bertogonz3000.parstegram";
+
+    //Image used for testing feed
+    private static final String testImagePath = "/storage/emulated/0/DCIM/Camera/IMG_20180710_131557.jpg";
+
+    private EditText etDescription;
+    private Button createButton, photoButton;
+
+    private ImageView photoView;
+
+    //global var for image file to be posted
+    private File file;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
@@ -21,7 +59,112 @@ public class CaptureFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-        ImageView checkImage = (ImageView) view.findViewById(R.id.checkImageTwo);
+
+        etDescription = (EditText) view.findViewById(R.id.etDescription);
+        createButton = (Button) view.findViewById(R.id.createButton);
+        photoView = (ImageView) view.findViewById(R.id.photoView);
+        photoButton = (Button) view.findViewById(R.id.photoButton);
+
+        photoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dispatchTakePictureIntent(view);
+            }
+        });
+
+        createButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final String description = etDescription.getText().toString();
+                final ParseUser user = ParseUser.getCurrentUser();
+
+                final ParseFile parseFile = new ParseFile(file);
+                parseFile.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        createPost(description, parseFile, user);
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    private void createPost(String description, ParseFile imageFile, ParseUser user){
+
+        final Post newPost = new Post();
+        newPost.setDescription(description);
+        newPost.setImage(imageFile);
+        newPost.setUser(user);
+
+        newPost.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+                if (e == null){
+                    Log.d("Home Activity", "Create Post Success");
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void loadTopPosts(){
+        //init a new Post Query
+        final Post.Query postQuery = new Post.Query();
+        postQuery.getTop().withUser();
+
+
+        postQuery.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, ParseException e) {
+
+                if(e == null){
+                    for (int i = 0; i < objects.size(); i++){
+                        Log.d("HomeActivity", "Post[" + i + "] = "
+                                + objects.get(i).getDescription()
+                                + "/username = " + objects.get(i).getUser().getUsername());
+                    }
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    public void dispatchTakePictureIntent(View view){
+
+        //get context()?
+        File directory = this.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        try{
+            file = File.createTempFile("photo", ".jpg", directory);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        //Get uri for file
+        Uri uri = FileProvider.getUriForFile(this.getContext(), AUTHORITY, file);
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null){
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            photoView.setImageBitmap(bitmap);
+        }
     }
 
 }
