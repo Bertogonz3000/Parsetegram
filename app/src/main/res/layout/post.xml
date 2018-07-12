@@ -10,9 +10,20 @@
         android:layout_height="match_parent"
         android:layout_above="@id/postDescription"
         android:layout_below="@id/postUsername"
-        android:padding="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:src="@drawable/login_gradient"
         />
+
+    <TextView
+        android:id="@+id/tvPostTimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Failed to get timestamp"
+        android:padding="5dp"
+        android:layout_alignTop="@id/postDescription"
+        android:layout_alignRight="@id/postImage"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/postUsername"

@@ -8,13 +8,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bertogonz3000.parstegram.Model.Post;
+import com.example.bertogonz3000.parstegram.Model.TimeFormatter;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+
+import org.w3c.dom.Text;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
     private ImageView postDetailsImage;
-    private TextView postDetailsUsername, postDetailsDescription;
+    private TextView postDetailsUsername, postDetailsDescription, tvTimeStamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         postDetailsDescription = (TextView) findViewById(R.id.postDetailsDescription);
         postDetailsImage = (ImageView) findViewById(R.id.postDetailsImage);
         postDetailsUsername = (TextView) findViewById(R.id.postDetailsUsername);
+        tvTimeStamp = (TextView) findViewById(R.id.tvTimeStamp);
 
         populatePost();
     }
@@ -40,6 +44,9 @@ public class PostDetailsActivity extends AppCompatActivity {
                     Glide.with(getApplicationContext())
                             .load(object.getImage().getUrl())
                             .into(postDetailsImage);
+
+                    tvTimeStamp.setText(TimeFormatter.getTimeDifference
+                            (object.getCreatedAt().toString()));
 
                     try {
                         postDetailsUsername.setText(object.getUser().fetchIfNeeded().getUsername());

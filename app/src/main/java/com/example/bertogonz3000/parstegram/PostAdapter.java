@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bertogonz3000.parstegram.Model.Post;
+import com.example.bertogonz3000.parstegram.Model.TimeFormatter;
 import com.parse.ParseException;
 
 import java.util.ArrayList;
@@ -66,6 +67,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             e.printStackTrace();
         }
 
+        //Set timestamp
+        holder.tvPostTimeStamp.setText(TimeFormatter.getTimeDifference(post.getCreatedAt().toString()));
+
         //set the image from data using Glide
         Glide.with(context)
                 .load(post.getImage().getUrl())
@@ -81,7 +85,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView postImage;
-        private TextView postUsername, postDescription;
+        private TextView postUsername, postDescription, tvPostTimeStamp;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -89,6 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             postImage = (ImageView) itemView.findViewById(R.id.postImage);
             postUsername = (TextView) itemView.findViewById(R.id.postUsername);
             postDescription = (TextView) itemView.findViewById(R.id.postDescription);
+            tvPostTimeStamp = (TextView) itemView.findViewById(R.id.tvPostTimeStamp);
 
             itemView.setOnClickListener(this);
         }
@@ -101,7 +106,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
                 Post post = posts.get(position);
 
-                //TODO - Create postdeatilsactivity
                 Intent intent = new Intent(context, PostDetailsActivity.class);
 
                 intent.putExtra("post", post.getObjectId());
