@@ -17,6 +17,9 @@ public class LandingActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
 
+    FragmentTransaction fragTransaction;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +31,17 @@ public class LandingActivity extends AppCompatActivity {
         //instantiate the fragment manager
         final FragmentManager fragager = getSupportFragmentManager();
 
-        //TODO - Create fragment classes
         //instantiate the fragments
         final Fragment feedFrag = new FeedFragment();
         final Fragment captureFrag = new CaptureFragment();
         final Fragment profileFrag = new ProfileFragment();
 
+        fragTransaction = fragager.beginTransaction();
+        fragTransaction.replace(R.id.frameLayout, feedFrag).commit();
+
         //handle navigation selection
         bottomNav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    FragmentTransaction fragTransaction;
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
