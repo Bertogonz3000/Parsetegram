@@ -39,7 +39,8 @@
         </provider>
 
         <activity android:name=".FeedActivity" />
-        <activity android:name=".PostDetailsActivity"></activity>
+        <activity android:name=".PostDetailsActivity" />
+        <activity android:name=".LandingActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/feedFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Feed"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/cameraFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera_black_24dp"
+        android:title="Capture"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/profile_icon"
+        android:title="Profile"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
