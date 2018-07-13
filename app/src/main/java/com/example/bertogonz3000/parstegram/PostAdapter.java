@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bertogonz3000.parstegram.Model.Post;
 import com.example.bertogonz3000.parstegram.Model.TimeFormatter;
 import com.parse.ParseException;
@@ -80,6 +82,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             //Set the profileimage from data using Glide
             Glide.with(context)
                     .load(post.getProfilePic().getUrl())
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                     .into(holder.profileImage);
         }
 

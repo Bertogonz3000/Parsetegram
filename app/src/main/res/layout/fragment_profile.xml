@@ -11,6 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/profile_icon"
+            android:layout_alignParentTop="true"
+            android:layout_margin="40dp"/>
+
+        <Button
+            android:id="@+id/changePicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Profile Picture"
+            android:textAllCaps="false"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/ivProfile" />
+
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"
