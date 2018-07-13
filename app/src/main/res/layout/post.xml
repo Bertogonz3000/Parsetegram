@@ -8,31 +8,46 @@
         android:id="@+id/postImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@drawable/login_gradient"
+
+
         android:layout_above="@id/postDescription"
         android:layout_below="@id/postUsername"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:src="@drawable/login_gradient"
         />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@id/postUsername"
+
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/postUsername"
+        android:src="@drawable/profile_icon" />
 
     <TextView
         android:id="@+id/tvPostTimeStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Failed to get timestamp"
-        android:padding="5dp"
-        android:layout_alignTop="@id/postDescription"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+
         android:layout_alignRight="@id/postImage"
-        android:textSize="20dp"/>
+        android:layout_alignTop="@id/postDescription"/>
 
     <TextView
         android:id="@+id/postUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:layout_alignParentTop="true"
         android:textSize="20dp"
-        android:padding="5dp"
+        android:textStyle="bold"
+
+
+        android:layout_toRightOf="@id/profileImage"
+        android:layout_alignParentTop="true"
         />
 
     <TextView
@@ -40,8 +55,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_alignParentBottom="true"
         android:textSize="20dp"
-        android:padding="5dp"/>
+        android:layout_marginRight="20dp"
+
+        android:layout_toLeftOf="@id/tvPostTimeStamp"
+        android:gravity="top"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

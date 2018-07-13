@@ -41,4 +41,6 @@ dependencies {
     //BottomNavigationView (Design Support Lib)
     implementation "com.android.support:appcompat-v7:27.1.1"
     implementation "com.android.support:design:27.1.1"
+    //rotation
+    implementation "com.android.support:exifinterface:25.1.0"
 }
