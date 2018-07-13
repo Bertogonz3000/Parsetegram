@@ -29,6 +29,13 @@
             android:layout_below="@id/ivProfile" />
 
         <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save New Profile Picture"
+            android:layout_below="@id/changePicButton"/>
+
+        <Button
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
