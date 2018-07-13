@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity"
-    android:background="@drawable/login_gradient">
+    tools:context=".SignUpActivity">
 
     <TextView
         android:id="@+id/welcomeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to \n Parstegram!"
+        android:text="Welcome to\n Parstegram!"
         android:textColor="@color/colorAccent"
         android:textSize="30dp"
         android:layout_centerHorizontal="true"
@@ -26,8 +25,10 @@
         android:textColorHint="@color/colorAccent"
         android:layout_below="@+id/welcomeMessage"
         android:hint="Enter a new username"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:padding="10dp"
+        android:background="@drawable/button_bg_transparent"
+        android:layout_margin="10dp"
         />
 
     <EditText
@@ -38,8 +39,10 @@
         android:textColorHint="@color/colorAccent"
         android:layout_below="@+id/etNewUsername"
         android:hint="Enter a new password"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_bg_transparent"
         />
 
     <EditText
@@ -50,20 +53,23 @@
         android:textColorHint="@color/colorAccent"
         android:layout_below="@+id/etNewPassword"
         android:hint="Enter your email"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_bg_transparent"
         />
 
     <Button
         android:id="@+id/createAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@color/blue_6"
         android:text="Create Account"
         android:layout_below="@id/etNewEmail"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorAccent"
+        android:textColor="#ffffff"
         android:textSize="20dp"
-        android:padding="30dp"/>
+        android:textAllCaps="false"
+        android:padding="10dp"/>
 
 </RelativeLayout>

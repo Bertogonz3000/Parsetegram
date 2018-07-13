@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.bertogonz3000.parstegram.FeedActivity;
 import com.example.bertogonz3000.parstegram.Model.Post;
@@ -78,13 +79,20 @@ public class CaptureFragment extends Fragment {
                 final String description = etDescription.getText().toString();
                 final ParseUser user = ParseUser.getCurrentUser();
 
-                final ParseFile parseFile = new ParseFile(file);
+                if (file != null && !description.equals("")){
+
+
+                    final ParseFile parseFile = new ParseFile(file);
                 parseFile.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         createPost(description, parseFile, user);
                     }
                 });
+            } else {
+                    Toast.makeText(getContext(), "Please take a photo and enter a description"
+                            , Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
