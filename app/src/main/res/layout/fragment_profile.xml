@@ -18,7 +18,8 @@
             android:src="@drawable/profile_icon"
             android:layout_below="@id/profileUsername"
             android:layout_margin="40dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/saveButton"/>
 
         <TextView
             android:id="@+id/profileUsername"
