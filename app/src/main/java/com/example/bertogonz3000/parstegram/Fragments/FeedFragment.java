@@ -1,8 +1,6 @@
 package com.example.bertogonz3000.parstegram.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,9 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.example.bertogonz3000.parstegram.HomeActivity;
 import com.example.bertogonz3000.parstegram.Model.Post;
 import com.example.bertogonz3000.parstegram.PostAdapter;
 import com.example.bertogonz3000.parstegram.R;
@@ -66,10 +62,6 @@ public class FeedFragment extends Fragment {
         createPostButton = (Button) view.findViewById(R.id.createPostButton);
     }
 
-    public void viewCreatePost(View view){
-        Intent intent = new Intent(view.getContext(), HomeActivity.class);
-        startActivity(intent);
-    }
 
     public void getPosts(){
         final Post.Query query = new Post.Query();

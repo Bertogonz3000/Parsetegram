@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bertogonz3000.parstegram.Model.Post;
 import com.example.bertogonz3000.parstegram.Model.TimeFormatter;
 import com.parse.GetCallback;
@@ -16,8 +18,8 @@ import org.w3c.dom.Text;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
-    private ImageView postDetailsImage;
-    private TextView postDetailsUsername, postDetailsDescription, tvTimeStamp;
+    private ImageView postDetailsImage, profileImageDetails;
+    private TextView postDetailsUsername, postDetailsDescription, tvPostTimeStamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,13 @@ public class PostDetailsActivity extends AppCompatActivity {
         postDetailsDescription = (TextView) findViewById(R.id.postDetailsDescription);
         postDetailsImage = (ImageView) findViewById(R.id.postDetailsImage);
         postDetailsUsername = (TextView) findViewById(R.id.postDetailsUsername);
-        tvTimeStamp = (TextView) findViewById(R.id.tvTimeStamp);
+        tvPostTimeStamp = (TextView) findViewById(R.id.tvPostTimeStamp);
+        profileImageDetails = (ImageView) findViewById(R.id.profileImageDetails);
 
         populatePost();
+
+
+
     }
 
     public void populatePost(){
@@ -45,8 +51,21 @@ public class PostDetailsActivity extends AppCompatActivity {
                             .load(object.getImage().getUrl())
                             .into(postDetailsImage);
 
-                    tvTimeStamp.setText(TimeFormatter.getTimeDifference
+                    tvPostTimeStamp.setText(TimeFormatter.getTimeDifference
                             (object.getCreatedAt().toString()));
+
+
+                    try {
+                        if (object.getUser().fetchIfNeeded().getParseFile("profilePicture") != null) {
+                            //Set the profileimage from data using Glide
+                            Glide.with(getApplicationContext())
+                                    .load(object.getUser().getParseFile("profilePicture").getUrl())
+                                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                    .into(profileImageDetails);
+                        }
+                    } catch (Exception error){
+                        error.printStackTrace();
+                    }
 
                     try {
                         postDetailsUsername.setText(object.getUser().fetchIfNeeded().getUsername());

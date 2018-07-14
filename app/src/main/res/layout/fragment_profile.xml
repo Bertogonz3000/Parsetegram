@@ -16,8 +16,21 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:src="@drawable/profile_icon"
+            android:layout_below="@id/profileUsername"
+            android:layout_margin="40dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/profileUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Username"
             android:layout_alignParentTop="true"
-            android:layout_margin="40dp"/>
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/changePicButton"
@@ -25,15 +38,28 @@
             android:layout_height="wrap_content"
             android:text="Change Profile Picture"
             android:textAllCaps="false"
-            android:layout_centerInParent="true"
-            android:layout_below="@id/ivProfile" />
+            android:background="@drawable/button_bg_transparent_blue"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@id/saveButton"
+            android:layout_alignBottom="@id/saveButton"/>
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save New Profile Picture"
-            android:layout_below="@id/changePicButton"/>
+            android:layout_toRightOf="@id/changePicButton"
+            android:textAllCaps="false"
+            android:background="@drawable/button_bg_transparent_blue"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="5dp"
+            android:layout_above="@id/logoutButton"
+            android:layout_alignParentRight="true"/>
 
         <Button
             android:id="@+id/logoutButton"
@@ -41,6 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="LOG OUT"
+            android:background="@drawable/button_bg_transparent_blue"
+            android:textColor="#FFFFFF"
             />
     </RelativeLayout>
 

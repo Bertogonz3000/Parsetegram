@@ -11,31 +11,46 @@
         android:id="@+id/postDetailsImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         android:src="@drawable/login_gradient"
-        android:layout_below="@id/postDetailsUsername"
+
+
         android:layout_above="@id/postDetailsDescription"
+        android:layout_below="@id/postDetailsUsername"
         />
 
+    <ImageView
+        android:id="@+id/profileImageDetails"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@id/postDetailsUsername"
+
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/postDetailsUsername"
+        android:src="@drawable/profile_icon" />
+
     <TextView
-        android:id="@+id/tvTimeStamp"
+        android:id="@+id/tvPostTimeStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Failed to get timestamp"
-        android:padding="5dp"
-        android:layout_alignTop="@id/postDetailsDescription"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+
         android:layout_alignRight="@id/postDetailsImage"
-        android:textSize="20dp"/>
+        android:layout_alignTop="@id/postDetailsDescription"/>
 
     <TextView
         android:id="@+id/postDetailsUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:layout_alignParentTop="true"
         android:textSize="20dp"
-        android:padding="5dp"
+        android:textStyle="bold"
+
+
+        android:layout_toRightOf="@id/profileImageDetails"
+        android:layout_alignParentTop="true"
         />
 
     <TextView
@@ -43,9 +58,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_alignParentBottom="true"
         android:textSize="20dp"
-        android:padding="5dp"
+        android:layout_marginRight="20dp"
+
+        android:layout_toLeftOf="@id/tvPostTimeStamp"
+        android:gravity="top"
+        android:layout_alignParentBottom="true"
         />
 
 </RelativeLayout>

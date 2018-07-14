@@ -1,6 +1,5 @@
 package com.example.bertogonz3000.parstegram.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,7 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.bertogonz3000.parstegram.FeedActivity;
 import com.example.bertogonz3000.parstegram.Model.Post;
 import com.example.bertogonz3000.parstegram.R;
 import com.parse.FindCallback;

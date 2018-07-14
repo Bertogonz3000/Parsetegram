@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -44,6 +45,7 @@ public class ProfileFragment extends Fragment {
     //global var for image file to be posted
     private File file;
 
+    TextView profileUsername;
     Button logoutButton, changePicButton, saveButton;
     ImageView ivProfile;
     final ParseUser user = ParseUser.getCurrentUser();
@@ -61,6 +63,17 @@ public class ProfileFragment extends Fragment {
         ivProfile = (ImageView) view.findViewById(R.id.ivProfile);
         changePicButton = (Button) view.findViewById(R.id.changePicButton);
         saveButton = (Button) view.findViewById(R.id.saveButton);
+        profileUsername = (TextView) view.findViewById(R.id.profileUsername);
+
+        profileUsername.setText(userName);
+
+        //set prof pic imageView
+        if (profilePic != null) {
+            Glide.with(view.getContext())
+                    .load(profilePic.getUrl())
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                    .into(ivProfile);
+        }
 
         changePicButton.setOnClickListener(new View.OnClickListener(){
 
@@ -101,14 +114,6 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
-
-        //set prof pic imageView
-        if (profilePic != null) {
-            Glide.with(view.getContext())
-                    .load(profilePic.getUrl())
-                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                    .into(ivProfile);
-        }
 
         logoutButton.setOnClickListener(new View.OnClickListener(){
 
